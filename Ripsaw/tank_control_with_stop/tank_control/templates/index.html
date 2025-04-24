@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tank Joystick</title>
+  <script src="https://cdn.jsdelivr.net/npm/nipplejs@0.9.0/dist/nipplejs.min.js"></script>
+  <style>
+    #joystick-container {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      margin: 50px auto;
+      background: #f0f0f0;
+      border-radius: 50%;
+    }
+    #stopBtn {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2 align="center">Tank Control Joystick</h2>
+  <div id="joystick-container"></div>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <button id="stopBtn">STOP</button>
+  </div>
+
+  <script src="{{ url_for('static', filename='joystick.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arduino Messenger</title>
+</head>
+<body>
+    <h1>Send Message to Arduino</h1>
+    <input type="text" id="messageInput" placeholder="Enter your message">
+    <button onclick="sendMessage()">Send</button>
+    <p><strong>Arduino response:</strong> <span id="responseOutput"></span></p>
+
+    <script>
+        async function sendMessage() {
+            const message = document.getElementById("messageInput").value;
+            const responseOutput = document.getElementById("responseOutput");
+
+            const response = await fetch("/send", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+            responseOutput.textContent = data.response;
+        }
+    </script>
+</body>
+</html>

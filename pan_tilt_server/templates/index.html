@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pan-Tilt Control</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .slider-container { margin-bottom: 20px; }
+    input[type=range] { width: 100%; }
+  </style>
+</head>
+<body>
+  <h1>Pan-Tilt Control</h1>
+
+  <div class="slider-container">
+    <label for="panSlider">Pan</label>
+    <input type="range" id="panSlider" min="-1" max="1" step="0.01" value="0">
+  </div>
+
+  <div class="slider-container">
+    <label for="tiltSlider">Tilt</label>
+    <input type="range" id="tiltSlider" min="-1" max="1" step="0.01" value="0">
+  </div>
+
+  <script>
+    const panSlider = document.getElementById("panSlider");
+    const tiltSlider = document.getElementById("tiltSlider");
+
+    function sendPosition() {
+      const pan = panSlider.value;
+      const tilt = tiltSlider.value;
+
+      fetch("/move", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `pan=${pan}&tilt=${tilt}`
+      });
+    }
+
+    panSlider.oninput = sendPosition;
+    tiltSlider.oninput = sendPosition;
+  </script>
+</body>
+</html>
